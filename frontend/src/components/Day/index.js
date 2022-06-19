@@ -1,7 +1,9 @@
+import styles from './day.module.css'
+
 const Day = ({date}) => 
 {
     return(
-        <div>
+        <div className = {styles.day}>
             <h1>{date}</h1>
         </div>
     )
