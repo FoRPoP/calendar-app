@@ -82,6 +82,7 @@ const Meeting = ({close, date}) =>
                     onChange = {(e) => setDesc(e.target.value)}
                 ></input>
             </div>
+            <br></br>
             <div className = {styles.btnLabel}>
                 <button className = {styles.btn} type = 'submit'>Submit Meeting</button>
                 <button className = {styles.btn} onClick = {(e) => reset(e)}>Close</button>

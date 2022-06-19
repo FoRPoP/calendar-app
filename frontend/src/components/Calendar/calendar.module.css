@@ -1,5 +1,6 @@
 .calendar
 {
+    background-color: white;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -22,6 +23,7 @@
 
 .header
 {
-    font-size: xx-large;
+    font-size: 60px;
+    font-style: italic;
     text-align: center;
 }

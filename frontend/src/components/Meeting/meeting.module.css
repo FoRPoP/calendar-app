@@ -21,6 +21,7 @@
     padding: 10px;
 }
 
+
 .btn
 {
     height: 50px;
@@ -32,13 +33,12 @@
     background-color: white;
 }
 
-
 .btnLabel
 {
     width: 200px;
     margin: 0 auto;
     display: inline;
-    padding: 100px;
+    padding: 0px 100px;
 }
 
 .btn:hover

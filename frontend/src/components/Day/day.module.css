@@ -1,7 +1,14 @@
 .day
 {
+    background-color: rgb(245,245,245);
     padding: 20px;
     text-align: left;
     width: 200px;
     height: 125px;
+}
+
+.day:hover, .day:focus, .day:active
+{
+    background-color: rgba(0,128,128, 0.8);
+    border-radius: 30%;
 }
