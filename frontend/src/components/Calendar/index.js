@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 import Day from '../Day';
+import Modal from '../Modal';
+
 import styles from './calendar.module.css'
 
 const Calendar = () =>
@@ -10,6 +14,8 @@ const Calendar = () =>
     const week5 = ['27', '28', '29', '30', ' ', ' ', ' '];
 
     const monthJune = [week1, week2, week3, week4, week5];
+
+    const [showModal, setShowModal] = useState(false)
 
     return(
         <div className = {styles.calendar}>
@@ -35,7 +41,10 @@ const Calendar = () =>
                                     week.map((date, dateIndex) =>
                                     (
                                         <td key = {dateIndex}>
-                                            <Day date = {date}></Day>
+                                            <Day 
+                                                date = {date}
+                                                modal = {() => {setShowModal(true);}}
+                                            ></Day>
                                         </td>
                                     ))
                                 }
@@ -44,6 +53,7 @@ const Calendar = () =>
                     }
                 </tbody>
             </table>
+            <Modal showModal = {showModal}></Modal>
         </div>
     )
 }
