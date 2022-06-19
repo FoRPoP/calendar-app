@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import Day from '../Day';
 import Modal from '../Modal';
+import Meeting from '../Meeting';
 
 import styles from './calendar.module.css'
 
@@ -15,6 +16,8 @@ const Calendar = () =>
 
     const monthJune = [week1, week2, week3, week4, week5];
 
+    const [meetingsList, setMeetingsList] = useState([]);
+    const [newMeeting, setNewMeeting] = useState([]);
     const [showModal, setShowModal] = useState(false)
 
     return(
@@ -43,7 +46,12 @@ const Calendar = () =>
                                         <td key = {dateIndex}>
                                             <Day 
                                                 date = {date}
-                                                modal = {() => {setShowModal(true);}}
+                                                modal = {() => 
+                                                    {
+                                                        setShowModal(true);
+                                                        setNewMeeting(date);
+                                                    }}
+                                                meetings = {meetingsList.filter((meeting) => Number(meeting.date) == Number(date))}
                                             ></Day>
                                         </td>
                                     ))
@@ -53,7 +61,12 @@ const Calendar = () =>
                     }
                 </tbody>
             </table>
-            <Modal showModal = {showModal}></Modal>
+            <Modal showModal = {showModal}>
+                <Meeting
+                    close = {() => {setShowModal(false);}}
+                    date = {newMeeting}
+                ></Meeting>
+            </Modal>
         </div>
     )
 }

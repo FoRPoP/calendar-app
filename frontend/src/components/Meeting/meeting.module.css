@@ -1,0 +1,47 @@
+.form
+{
+    width: 800px;
+    display: block;
+    margin: 40px 200px;
+}
+
+.label
+{
+    display: block;
+    cursor: default;
+    padding: 10px;
+}
+
+.input
+{
+    display: block;
+    width: 600px;
+    border: 1px solid black;
+    cursor: text;
+    padding: 10px;
+}
+
+.btn
+{
+    height: 50px;
+    width: 200px;
+    margin: 0 auto;
+    display: inline;
+    cursor: pointer;
+    color: black;
+    background-color: white;
+}
+
+
+.btnLabel
+{
+    width: 200px;
+    margin: 0 auto;
+    display: inline;
+    padding: 100px;
+}
+
+.btn:hover
+{
+    border-color: red;
+}
