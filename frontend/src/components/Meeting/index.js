@@ -66,7 +66,6 @@ const Meeting = ({close, date}) =>
 
     const validate = () => 
     {
-        console.log('validating');
         if (title === undefined || title.length < 2)
         {
             window.alert("Enter the title correctly!")

@@ -4,8 +4,6 @@ let User = require('../models/user.model');
 
 router.route('/').get((req, res) => 
 {
-    console.log('users');
-
     User.find()
         .then((users) => res.json(users))
         .catch((err) => res.status(400).json('Error: ' + err));
@@ -13,8 +11,6 @@ router.route('/').get((req, res) =>
 
 router.route('/add').post((req, res) => 
 {
-    console.log('users/add');
-    
     const username = req.body.username;
     const newUser = new User({username});
 
