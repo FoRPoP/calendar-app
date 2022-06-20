@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Day from '../Day';
 import Modal from '../Modal';
@@ -8,6 +8,7 @@ import styles from './calendar.module.css'
 
 const Calendar = () =>
 {
+
     const week1 = [' ', ' ', '1', '2', '3', '4', '5'];
     const week2 = ['6', '7', '8', '9', '10', '11', '12'];
     const week3 = ['13', '14', '15', '16', '17', '18', '19'];
@@ -19,6 +20,14 @@ const Calendar = () =>
     const [meetingsList, setMeetingsList] = useState([]);
     const [newMeeting, setNewMeeting] = useState([]);
     const [showModal, setShowModal] = useState(false)
+    const [meetingSet, setMeetingSet] = useState(false);
+
+    useEffect(() => 
+    {
+        fetch('http://localhost:5000/meetings')
+            .then((res) => res.json())
+            .then((data) => setMeetingsList(data))
+    }, []);
 
     return(
         <div className = {styles.calendar}>

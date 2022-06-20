@@ -1,7 +1,11 @@
+import { useRouter } from 'next/router';
+
 import styles from './day.module.css'
 
 const Day = ({date, modal, meetings}) => 
 {
+    const router = useRouter();
+
     if (date === ' ')
     {
         return(
@@ -15,12 +19,17 @@ const Day = ({date, modal, meetings}) =>
         return(
             <div className = {styles.day} onDoubleClick = {modal}>
                 <h1>{date}</h1>
+                <div className = {styles.meetings}>
                 {
-                    meetings.map((meeting) =>
+                    meetings.map((meeting, idKey) =>
                     {
-                        return <p>{meeting.title} : {meeting.time}</p>
+                        return <p key={idKey} 
+                                    onClick = {() => {router.push('/meeting/' + meeting._id)}}
+                                    className = {styles.meeting}>
+                        {meeting.title} : {meeting.time}</p>
                     })
                 }
+                </div>
             </div>
         )
     }

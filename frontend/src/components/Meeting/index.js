@@ -1,12 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { useRouter } from 'next/router';
+import Multiselect from 'multiselect-react-dropdown';
 
 import styles from './meeting.module.css'
 
 const Meeting = ({close, date}) =>
 {
+    const router = useRouter();
+
+    const [allParticipants, setAllParticipants] = useState([]);
     const [title, setTitle] = useState("");
     const [time, setTime] = useState("");
     const [desc, setDesc] = useState("");
+    const [participants, setParticipants] = useState([]);
+
+    useEffect(() => 
+    {
+        fetch('http://localhost:5000/users')
+            .then((res) => res.json())
+            .then((data) => setAllParticipants(data));
+    }, []);
 
     const submitForm = (e) =>
     {
@@ -17,10 +30,24 @@ const Meeting = ({close, date}) =>
             const newMeeting = 
             {
                 title: title,
-                day: date,
+                date: date,
                 time: time,
-                desc: desc
+                desc: desc,
+                participants: participants?.map((x) => x.username)
             };
+
+            const options = 
+            {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(newMeeting)
+            };
+
+            fetch('http://localhost:5000/meetings/add', options)
+                .then((res) => res.json())
+            
+            reset(e);
+            window.location.reload();
         }
     }
 
@@ -30,11 +57,13 @@ const Meeting = ({close, date}) =>
         setTitle("");
         setTime("");
         setDesc("");
+        setParticipants([]);
         close();
     }
 
     const validate = () => 
     {
+        console.log('validating');
         if (title === undefined || title.length < 2)
         {
             window.alert("Enter the title correctly!")
@@ -81,6 +110,9 @@ const Meeting = ({close, date}) =>
                     value = {desc}
                     onChange = {(e) => setDesc(e.target.value)}
                 ></input>
+            </div>
+            <div>
+                <label className = {styles.label}>Add Participants: </label>
             </div>
             <br></br>
             <div className = {styles.btnLabel}>

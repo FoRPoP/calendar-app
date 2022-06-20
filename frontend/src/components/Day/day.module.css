@@ -1,5 +1,6 @@
 .day
 {
+    display: flex;
     background-color: rgb(245,245,245);
     padding: 20px;
     text-align: left;
@@ -11,4 +12,23 @@
 {
     background-color: rgba(0,128,128, 0.8);
     border-radius: 30%;
+}
+
+.meetings
+{
+    display: block;
+}
+
+.meeting
+{
+    color: orange;
+    font-size: small;
+    text-align: right;
+    margin-left: 30px;
+}
+
+.meeting:hover
+{
+    cursor: pointer;
+    font-style: italic;
 }
