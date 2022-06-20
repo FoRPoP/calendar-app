@@ -4,7 +4,7 @@ import Multiselect from 'multiselect-react-dropdown';
 
 import styles from './meeting.module.css'
 
-const Meeting = ({close, date}) =>
+const Meeting = ({close, date, onSubmit}) =>
 {
     const router = useRouter();
 
@@ -47,9 +47,7 @@ const Meeting = ({close, date}) =>
 
             fetch('http://localhost:5000/meetings/add', options)
                 .then((res) => res.json())
-            
-            reset(e);
-            window.location.reload();
+                .then(() => {reset(e); onSubmit();});
         }
     }
 

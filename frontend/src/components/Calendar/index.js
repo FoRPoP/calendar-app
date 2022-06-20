@@ -19,14 +19,16 @@ const Calendar = () =>
 
     const [meetingsList, setMeetingsList] = useState([]);
     const [newMeeting, setNewMeeting] = useState([]);
-    const [showModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState(false);
+
+    const [changedMeeting, setChangedMeeting] = useState(false);
 
     useEffect(() => 
     {
         fetch('http://localhost:5000/meetings')
             .then((res) => res.json())
             .then((data) => setMeetingsList(data))
-    }, []);
+    }, [changedMeeting]);
 
     return(
         <div className = {styles.calendar}>
@@ -73,6 +75,7 @@ const Calendar = () =>
                 <Meeting
                     close = {() => {setShowModal(false);}}
                     date = {newMeeting}
+                    onSubmit = {() => {setChangedMeeting(!changedMeeting);}}
                 ></Meeting>
             </Modal>
         </div>
