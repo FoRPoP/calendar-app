@@ -20,7 +20,6 @@ const Calendar = () =>
     const [meetingsList, setMeetingsList] = useState([]);
     const [newMeeting, setNewMeeting] = useState([]);
     const [showModal, setShowModal] = useState(false)
-    const [meetingSet, setMeetingSet] = useState(false);
 
     useEffect(() => 
     {

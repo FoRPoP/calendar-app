@@ -21,6 +21,8 @@ const Meeting = ({close, date}) =>
             .then((data) => setAllParticipants(data));
     }, []);
 
+    const multiselectList = useRef();
+
     const submitForm = (e) =>
     {
         e.preventDefault();
@@ -33,7 +35,7 @@ const Meeting = ({close, date}) =>
                 date: date,
                 time: time,
                 desc: desc,
-                participants: participants?.map((x) => x.username)
+                participants: participants?.map((participant) => participant.username)
             };
 
             const options = 
@@ -58,6 +60,7 @@ const Meeting = ({close, date}) =>
         setTime("");
         setDesc("");
         setParticipants([]);
+        multiselectList.current.resetSelectedValues();
         close();
     }
 
@@ -113,6 +116,26 @@ const Meeting = ({close, date}) =>
             </div>
             <div>
                 <label className = {styles.label}>Add Participants: </label>
+                <Multiselect
+                options = {allParticipants}
+                selectedValues = {[]}
+                onSelect = {(selectedList, selectedItem) => setParticipants(selectedList)}
+                onRemove={(selectedList, removedItem) => setParticipants(selectedList)}
+                displayValue = "username"
+                ref = {multiselectList}
+                style={{
+                    multiselectContainer: 
+                    {
+                      width: 600
+                    },
+                    searchBox: 
+                    {
+                      border: 'none',
+                      'border-bottom': '1px solid black',
+                      'border-radius': '0px'
+                    }
+                  }}
+                ></Multiselect>
             </div>
             <br></br>
             <div className = {styles.btnLabel}>
