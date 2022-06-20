@@ -18,7 +18,8 @@ router.route('/add').post((req, res) =>
     const date = Number(req.body.date);
     const time = req.body.time;
     const desc = req.body.desc;
-    const participants = ' ';
+    const participants = req.body.participants;
+    console.log(participants);
 
     const newMeeting = new Meeting({
         title,
